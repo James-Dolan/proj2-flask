@@ -29,21 +29,22 @@ def process(raw):
             raise ValueError("Trouble with line: '{}'\n".format(line) + 
                 "Split into |{}|".format("|".join(parts)))
 
-        if field == "begin":
+        """if field == "begin":
             try:
                 base = arrow.get(content)
             except:
                 raise ValueError("Unable to parse date {}".format(content))
-
-        elif field == "week":
+"""
+        if field == "week":
             if entry:
                 cooked.append(entry)
                 entry = { }
             entry['topic'] = ""
             entry['project'] = ""
+            entry['begin'] = ""
             entry['week'] = content
 
-        elif field == 'topic' or field == 'project':
+        elif field == 'topic' or field == 'project' or field == 'begin' or field == 'curBegin':
             entry[field] = content
 
         else:
